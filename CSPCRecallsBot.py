@@ -34,13 +34,9 @@ subreddit = reddit.subreddit('CPSCRecalls')
 
 for index in indexList:
     # Check to see if it's already been submitted
-    search = list(subreddit.search("Helmets"))
-    for thing in search:
-        print (thing)
-
-    exit(0)
-
-    subTitle = feed['entries'][index]['title']
-    subTitle = re.sub(r'\([^)]*\)', '', subTitle).rstrip()
-    submission = subreddit.submit(subTitle, url=feed['entries'][index]['link'])
-    submission.reply("> " + str(feed['entries'][index]['summary']))
+    search = list(subreddit.search("url:"+feed['entries'][index]['link']))
+    if len(search) == 0:
+        subTitle = feed['entries'][index]['title']
+        subTitle = re.sub(r'\([^)]*\)', '', subTitle).rstrip()
+        submission = subreddit.submit(subTitle, url=feed['entries'][index]['link'])
+        submission.reply("> " + str(feed['entries'][index]['summary']))
