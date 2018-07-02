@@ -9,7 +9,7 @@
 import praw, feedparser, re
 from datetime import timedelta, datetime
 
-yesterdayTime = datetime.now() - timedelta(days=5)
+yesterdayTime = datetime.now() - timedelta(days=1)
 feed = feedparser.parse("https://www.cpsc.gov/Newsroom/CPSC-RSS-Feed/Recalls-RSS")
 
 # See if the first element is a new one
@@ -39,4 +39,4 @@ for index in indexList:
         subTitle = feed['entries'][index]['title']
         subTitle = re.sub(r'\([^)]*\)', '', subTitle).rstrip()
         submission = subreddit.submit(subTitle, url=feed['entries'][index]['link'])
-        submission.reply("> " + str(feed['entries'][index]['summary']))
+        submission.reply("> " + str(feed['entries'][index]['summary']) + "\n\n^(This message was posted by a bot. [source](https://github.com/etnguyen03/CPSCRecallsBot/)")
