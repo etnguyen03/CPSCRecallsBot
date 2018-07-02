@@ -26,7 +26,7 @@ while (Break == False):
 
 if len(indexList) == 0:
     logFile = open("logFile.txt", "a")
-    logFile.write(datetime.now().strftime('%Y-%m-%d %H:%M:%S') + "\t\t0")
+    logFile.write(datetime.now().strftime('%Y-%m-%d %H:%M:%S') + "\t0")
     logFile.close()
     exit(0)
 
@@ -49,5 +49,5 @@ for index in indexList:
         submission.reply("> " + str(feed['entries'][index]['summary']) + "\n\n^(This message was posted by a bot. [source](https://github.com/etnguyen03/CPSCRecallsBot/)")
         submissionsList.append(str(submission))
 
-logFile.write(datetime.now().strftime('%Y-%m-%d %H:%M:%S') + "\t\t" + len(submissionsList) + "\t\t" + str(submissionsList))
+logFile.write(datetime.now().strftime('%Y-%m-%d %H:%M:%S') + "\t" + len(submissionsList) + "\t" + str(submissionsList))
 logFile.close()
