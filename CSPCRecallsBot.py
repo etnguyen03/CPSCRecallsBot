@@ -7,10 +7,25 @@
 # Line 4: Reddit Password
 
 import praw, feedparser
+from datetime import timedelta, datetime
 
+yesterdayTime = datetime.now() - timedelta(days=5)
 feed = feedparser.parse("https://www.cpsc.gov/Newsroom/CPSC-RSS-Feed/Recalls-RSS")
 
+# See if the first element is a new one
+Break = False
+index = 0
+indexList = []
+while (Break == False):
+    eventDate = datetime.strptime(feed['entries'][index]['published'], "%B %d, %Y")
+    if eventDate > yesterdayTime:
+        indexList.append(index)
+    else:
+        Break = True
+    index+=1
 
+if len(indexList) == 0:
+    exit(0)
 
 secretFile = open("secret.txt").read().split("\n")
 
