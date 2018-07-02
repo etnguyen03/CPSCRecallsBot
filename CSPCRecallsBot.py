@@ -9,7 +9,7 @@
 import praw, feedparser, re
 from datetime import timedelta, datetime
 
-yesterdayTime = datetime.now() - timedelta(days=1)
+yesterdayTime = datetime.now() - timedelta(days=5)
 feed = feedparser.parse("https://www.cpsc.gov/Newsroom/CPSC-RSS-Feed/Recalls-RSS")
 
 # See if the first element is a new one
@@ -34,8 +34,9 @@ subreddit = reddit.subreddit('CPSCRecalls')
 
 for index in indexList:
     # Check to see if it's already been submitted
-    search = subreddit.search(str(feed['entries'][index]['link']))
-    print(search)
+    search = list(subreddit.search("Helmets"))
+    for thing in search:
+        print (thing)
 
     exit(0)
 
