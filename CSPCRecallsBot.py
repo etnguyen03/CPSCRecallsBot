@@ -25,6 +25,9 @@ while (Break == False):
     index+=1
 
 if len(indexList) == 0:
+    logFile = open("logFile.txt", "a")
+    logFile.write(datetime.now().strftime('%Y-%m-%d %H:%M:%S') + "\t\t0")
+    logFile.close()
     exit(0)
 
 secretFile = open("secret.txt").read().split("\n")
