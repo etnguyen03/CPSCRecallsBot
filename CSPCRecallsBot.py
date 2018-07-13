@@ -54,9 +54,9 @@ submissionsList = []
 
 for index in indexList:
     # Check to see if it's already been submitted
-    searchFor = re.sub(".*[/]", "", feed['entries'][index]['link'])
+    # searchFor = re.sub(".*[/]", "", feed['entries'][index]['link'])
+    searchFor = "url:"+str(feed['entries'][index]['link'])
     search = list(subreddit.search(searchFor))
-    print(search)
     if len(search) == 0:
         subTitle = feed['entries'][index]['title']
         subTitle = re.sub(r'\([^)]*\)', '', subTitle).rstrip()
